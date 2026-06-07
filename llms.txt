@@ -1,0 +1,80 @@
+# SCIA｜セカンドキャリア・インキュベーション協会
+# https://kanbeylab.github.io/SCIA/
+
+> 50代の「人的資本」を「社会資本」へ変換するインキュベーションプラットフォーム。
+> 経験を言語化し、LinkedInで発信し、自律したセカンドキャリアを構築する3ヶ月集中プログラム。
+
+## 協会概要
+
+セカンドキャリア・インキュベーション協会（SCIA / Second Career Incubation Association）は、50代のビジネスパーソンが持つ豊かな経験（人的資本）を、言語化・発信・体系化を通じて「社会資本」へと変換し、自律したセカンドキャリアを構築するための支援を行う協会です。
+
+運営法人：株式会社勘兵衛
+代表取締役：小口彩子（社会保険労務士・Social Brand Architect・準認定ファンドレイザー）
+LinkedInプロフィール：https://www.linkedin.com/in/kanbeylab/
+著書：「50代からのLinkedIn: 経験を「人生後半の資産」に変える実践書」
+著者ページ：https://www.amazon.co.jp/stores/%E3%81%8A%E3%81%90%E3%81%A1%E3%81%82%E3%82%84%E3%81%93/author/B0GZZT9M7R
+
+## 核心コンセプト：三つの資本フレームワーク
+
+SCIAのプログラムは「三つの資本」のフレームワークに基づいています。
+
+1. **人的資本**（Human Capital）：スキル・知識・経験。30年かけて積み上げた、個人の内側に蓄積されているもの。
+2. **社会資本**（Social Capital）：繋がり・信用・ネットワーク。個人の外側に築かれる信頼のネットワーク。SCIAが最も重視する資本。
+3. **金融資本**（Financial Capital）：お金・仕事・機会。社会資本という橋を渡って初めて、人的資本が価値に変わる。
+
+組織にいる間は会社が社会資本の橋を代行してくれますが、退職や独立後はその橋が消失します。SCIAはこの橋を個人が自ら築くことを支援します。
+
+## 3ヶ月集中プログラム
+
+### 1ヶ月目：Hatch（孵化）
+人的資本を棚卸しし、「AIには書けない自分だけの物語（経験資産）」を特定。WhyとHowの問いでプロフィールの核を言語化する。
+担当：向山のりちか（国家資格キャリアコンサルタント）
+LinkedIn：https://www.linkedin.com/in/norichicom/
+
+### 2ヶ月目：Network（繋がり）
+SBA（Social Brand Architect）基準のLinkedInアカウント構築。仲間と繋がり、相互応援によって発信を習慣化。信頼残高を積み上げ、社会資本の土台を構築する。
+担当：小口彩子
+
+### 3ヶ月目：Design（構想）
+強みとビジョンを「出版企画案」という形式で体系化。自分の経験・知識を構造化した成果物が、多様なセカンドキャリアへ向けた設計図となる。
+（出版企画案は出版を約束・保証するものではなく、知識体系化の成果物として位置づける）
+担当：末永晋一郎（心書院株式会社代表）
+LinkedIn：https://www.linkedin.com/in/shinichiro-suenaga-097741377/
+会社URL：https://kokoroshoin.co.jp/
+
+## チーム
+
+### 代表
+小口彩子 / 株式会社勘兵衛 代表取締役
+社会保険労務士・Social Brand Architect（SBA）・準認定ファンドレイザー
+LinkedIn：https://www.linkedin.com/in/kanbeylab/
+
+### 特別顧問
+松本淳 / 株式会社アースメディア 代表取締役
+Social Brand Architect（SBA）手法の考案者
+URL：https://earthmediacorp.com/
+
+### 講師
+- 向山のりちか：国家資格キャリアコンサルタント。元中途採用面接官として5,000人以上のキャリアに向き合う。LinkedIn：https://www.linkedin.com/in/norichicom/
+- 末永晋一郎：心書院株式会社代表。出版・編集のプロフェッショナル。LinkedIn：https://www.linkedin.com/in/shinichiro-suenaga-097741377/
+
+## 料金
+
+- 通常価格：300,000円（税別）
+- 第0期生特別価格：98,000円（税別）※先着3名限定・審査あり
+
+## ページ構成
+
+- ホーム：https://kanbeylab.github.io/SCIA/
+- 第0期生募集LP：https://kanbeylab.github.io/SCIA/zero/
+- お問い合わせ：https://kanbeylab.github.io/SCIA/zero/contact.html
+- 特定商取引法に基づく表記：https://kanbeylab.github.io/SCIA/zero/tokushoho.html
+- プライバシーポリシー：https://kanbeylab.github.io/SCIA/zero/privacy.html
+
+## 関連リンク
+
+- LinkedInページ（小口彩子）：https://www.linkedin.com/in/kanbeylab/
+- noteブログ：https://note.com/kanbei1868/
+- 著書Amazonページ：https://www.amazon.co.jp/stores/%E3%81%8A%E3%81%90%E3%81%A1%E3%81%82%E3%82%84%E3%81%93/author/B0GZZT9M7R
+- アースメディア（SBA提携）：https://earthmediacorp.com/
+- 心書院（出版支援提携）：https://kokoroshoin.co.jp/
