@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>送信完了｜SCIA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --mint-dark: #5FAFA2; --mint-light: #E2F2EF;
+            --salmon-dark: #E27D6B;
+            --ink: #1a1a2e; --paper: #faf8f3;
+            --g400: #9ca3af; --g500: #6b7280; --g600: #4b5563;
+        }
+        body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); background: var(--paper); font-size: 16px; line-height: 1.85; min-height: 100vh; display: flex; flex-direction: column; }
+        a { text-decoration: none; color: inherit; }
+
+        .header { background: var(--ink); padding: 16px 0; }
+        .header-inner { max-width: 900px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 1.15rem; color: #fff; }
+        .logo-s { background: var(--mint-dark); color: #fff; padding: 4px 8px; border-radius: 8px; }
+
+        .content { flex: 1; max-width: 600px; margin: 0 auto; padding: 80px 24px; text-align: center; }
+        .icon { font-size: 4rem; margin-bottom: 24px; }
+        h1 { font-family: 'Noto Serif JP', serif; font-weight: 900; font-size: clamp(1.4rem, 4vw, 1.9rem); color: var(--mint-dark); margin-bottom: 16px; }
+        .message { color: var(--g600); font-size: 0.97rem; line-height: 1.95; margin-bottom: 40px; }
+        .btn { display: inline-block; background: var(--mint-dark); color: #fff; font-weight: 700; padding: 14px 40px; border-radius: 999px; font-size: 0.95rem; transition: opacity 0.2s; }
+        .btn:hover { opacity: 0.85; }
+
+        .footer { background: var(--ink); color: var(--g400); padding: 36px 20px; text-align: center; }
+        .footer-copy { font-size: 0.75rem; color: var(--g500); }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo"><span class="logo-s">S</span> SCIA</a>
+    </div>
+</header>
+
+<div class="content">
+    <div class="icon">✅</div>
+    <h1>送信が完了しました</h1>
+    <p class="message">
+        お問い合わせいただきありがとうございます。<br>
+        内容を確認のうえ、担当者よりご連絡いたします。<br>
+        通常2〜3営業日以内にご返信いたします。
+    </p>
+    <a href="index.html" class="btn">募集ページへ戻る</a>
+</div>
+
+<footer class="footer">
+    <p class="footer-copy">&copy; <span id="year"></span> Second Career Incubation Association. All Rights Reserved.</p>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
