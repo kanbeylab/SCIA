@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信頼される50代プロフィール度診断｜SCIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17302c;
+    --ink-soft:#4c605b;
+    --teal:#0d8a7a;
+    --teal-deep:#0a6b5f;
+    --teal-tint:#e6f4f1;
+    --coral:#ef6a53;
+    --coral-deep:#d9503a;
+    --amber:#e19a34;
+    --amber-tint:#fbefda;
+    --paper:#ffffff;
+    --warm:#fbf9f4;
+    --line:#e7e2d6;
+    --shadow:0 1px 2px rgba(23,48,44,.04), 0 12px 32px rgba(23,48,44,.07);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--warm);
+    color:var(--ink);
+    font-family:"BIZ UDPGothic",system-ui,sans-serif;
+    font-size:18px;
+    line-height:1.85;
+    letter-spacing:.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .zen{font-family:"Zen Kaku Gothic New",sans-serif;}
+  .wrap{max-width:660px;margin:0 auto;padding:0 20px;}
+  .screen{display:none;animation:rise .5s cubic-bezier(.2,.7,.3,1) both;}
+  .screen.active{display:block;}
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion:reduce){
+    .screen,.card,.opt,.markpin{animation:none!important;transition:none!important;}
+  }
+
+  /* ---- header band ---- */
+  .band{
+    padding:34px 0 26px;
+    text-align:center;
+  }
+  .brand{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:700;font-size:15px;letter-spacing:.14em;
+    color:var(--teal-deep);
+  }
+  .brand .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:linear-gradient(135deg,var(--teal),var(--amber));
+  }
+
+  /* ---- intro ---- */
+  .eyebrow{
+    display:inline-block;
+    font-size:14px;font-weight:700;letter-spacing:.1em;
+    color:var(--coral-deep);
+    background:var(--amber-tint);
+    padding:6px 15px;border-radius:999px;
+    margin:6px 0 18px;
+  }
+  h1.title{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:900;
+    font-size:clamp(28px,7vw,40px);
+    line-height:1.35;
+    margin:.1em 0 .55em;
+    letter-spacing:.005em;
+  }
+  h1.title .u{
+    background:linear-gradient(transparent 62%, rgba(225,154,52,.38) 62%);
+  }
+  .lead{
+    color:var(--ink-soft);
+    font-size:17px;
+    margin:0 auto 30px;
+    max-width:560px;
+    text-align:left;
+  }
+  .lead p{margin:0 0 1em;}
+  .lead .accent{color:var(--teal-deep);font-weight:700;}
+
+  .panel{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:26px 22px;
+    text-align:left;
+    margin-bottom:22px;
+  }
+  .panel h2{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-size:17px;font-weight:700;margin:0 0 4px;
+  }
+  .panel .sub{color:var(--ink-soft);font-size:14px;margin:0 0 18px;}
+  .field{margin-bottom:16px;}
+  .field:last-child{margin-bottom:0;}
+  label{display:block;font-size:15px;font-weight:700;margin-bottom:7px;}
+  label .opt-tag{
+    font-weight:400;font-size:13px;color:var(--ink-soft);
+    margin-left:7px;
+  }
+  input[type=text],input[type=url],textarea{
+    width:100%;
+    font-family:inherit;font-size:17px;
+    color:var(--ink);
+    padding:13px 15px;
+    border:1.5px solid var(--line);
+    border-radius:12px;
+    background:var(--warm);
+    transition:border-color .15s, background .15s;
+  }
+  textarea{resize:vertical;min-height:88px;line-height:1.7;}
+  input:focus,textarea:focus{
+    outline:none;border-color:var(--teal);background:#fff;
+    box-shadow:0 0 0 4px var(--teal-tint);
+  }
+
+  /* ---- buttons ---- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:700;font-size:18px;
+    padding:17px 22px;
+    border:none;border-radius:14px;
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .15s ease, background .15s;
+    line-height:1.4;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{
+    background:var(--teal);color:#fff;
+    box-shadow:0 8px 20px rgba(13,138,122,.28);
+  }
+  .btn-primary:hover{background:var(--teal-deep);}
+  .btn-cta{
+    background:var(--coral);color:#fff;
+    box-shadow:0 10px 24px rgba(239,106,83,.32);
+  }
+  .btn-cta:hover{background:var(--coral-deep);}
+  .btn-ghost{
+    background:transparent;color:var(--teal-deep);
+    border:1.5px solid var(--line);box-shadow:none;font-size:16px;
+  }
+  .btn-ghost:hover{border-color:var(--teal);background:var(--teal-tint);}
+  .btn .arw{font-size:20px;line-height:1;}
+  .btn:focus-visible{outline:3px solid var(--amber);outline-offset:3px;}
+  .note{
+    text-align:center;color:var(--ink-soft);font-size:13.5px;margin:12px 0 0;
+  }
+
+  /* ---- progress ---- */
+  .prog{padding:22px 0 6px;}
+  .prog-top{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:10px;
+  }
+  .prog-step{font-size:14px;font-weight:700;color:var(--teal-deep);letter-spacing:.04em;}
+  .prog-pct{font-size:13px;color:var(--ink-soft);}
+  .prog-bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;}
+  .prog-fill{
+    height:100%;border-radius:99px;
+    background:linear-gradient(90deg,var(--teal),var(--amber));
+    width:0;transition:width .45s cubic-bezier(.2,.7,.3,1);
+  }
+
+  /* ---- question ---- */
+  .qnum{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:900;font-size:15px;color:var(--coral-deep);letter-spacing:.08em;
+    margin:26px 0 8px;
+  }
+  .qtext{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:700;font-size:clamp(20px,4.6vw,24px);
+    line-height:1.55;margin:0 0 22px;
+  }
+  .opts{display:flex;flex-direction:column;gap:12px;}
+  .opt{
+    display:flex;align-items:center;gap:15px;
+    text-align:left;width:100%;
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+    font-family:inherit;font-size:17px;color:var(--ink);line-height:1.55;
+    cursor:pointer;
+    transition:border-color .14s, background .14s, transform .1s;
+    box-shadow:0 1px 2px rgba(23,48,44,.03);
+  }
+  .opt:hover{border-color:var(--teal);background:var(--teal-tint);}
+  .opt:active{transform:scale(.99);}
+  .opt:focus-visible{outline:3px solid var(--amber);outline-offset:2px;}
+  .opt.sel{border-color:var(--teal);background:var(--teal-tint);box-shadow:0 0 0 3px var(--teal-tint);}
+  .opt .mk{
+    flex:0 0 auto;
+    width:34px;height:34px;border-radius:50%;
+    display:grid;place-items:center;
+    font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:16px;
+    background:var(--warm);color:var(--teal-deep);
+    border:1.5px solid var(--line);
+    transition:all .14s;
+  }
+  .opt:hover .mk,.opt.sel .mk{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .qnav{display:flex;gap:12px;margin-top:22px;}
+  .qnav .btn-ghost{width:auto;padding-left:20px;padding-right:20px;flex:0 0 auto;}
+  .qnav .spacer{flex:1;}
+
+  /* ---- result ---- */
+  .r-hi{color:var(--coral-deep);}
+  .result-eyebrow{
+    font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--ink-soft);
+    margin:24px 0 6px;
+  }
+  .type-name{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:900;font-size:clamp(26px,6vw,34px);line-height:1.35;
+    margin:0 0 4px;
+  }
+  .type-name .stage{color:var(--teal-deep);}
+  .type-tag{
+    display:inline-block;font-size:14px;font-weight:700;
+    padding:5px 14px;border-radius:999px;margin-bottom:18px;
+    background:var(--teal-tint);color:var(--teal-deep);
+  }
+
+  /* stage path */
+  .path{
+    display:flex;align-items:flex-start;justify-content:space-between;
+    position:relative;margin:8px 0 26px;padding:0 4px;
+  }
+  .path::before{
+    content:"";position:absolute;left:12%;right:12%;top:15px;height:3px;
+    background:var(--line);border-radius:99px;z-index:0;
+  }
+  .path-node{
+    position:relative;z-index:1;text-align:center;width:33%;
+  }
+  .markpin{
+    width:32px;height:32px;border-radius:50%;margin:0 auto 8px;
+    background:var(--paper);border:3px solid var(--line);
+    display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--ink-soft);
+    font-family:"Zen Kaku Gothic New",sans-serif;
+  }
+  .path-node.on .markpin{
+    background:var(--coral);border-color:var(--coral);color:#fff;
+    box-shadow:0 0 0 6px rgba(239,106,83,.16);
+    transform:scale(1.12);
+  }
+  .path-node.done .markpin{background:var(--teal);border-color:var(--teal);color:#fff;}
+  .path-lbl{font-size:12.5px;line-height:1.35;color:var(--ink-soft);}
+  .path-node.on .path-lbl{color:var(--coral-deep);font-weight:700;}
+
+  .r-block{margin-bottom:20px;}
+  .r-block h3{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-size:16px;font-weight:700;margin:0 0 8px;
+    display:flex;align-items:center;gap:9px;
+  }
+  .r-block h3 .ic{
+    width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+    font-size:15px;flex:0 0 auto;
+  }
+  .ic.teal{background:var(--teal-tint);}
+  .ic.amber{background:var(--amber-tint);}
+  .ic.coral{background:#fde6e1;}
+  .r-block p{margin:0 0 .6em;color:var(--ink);font-size:16.5px;}
+  .r-block p:last-child{margin-bottom:0;}
+
+  .split{display:grid;grid-template-columns:1fr;gap:14px;}
+  @media(min-width:560px){.split{grid-template-columns:1fr 1fr;}}
+  .split-card{
+    background:var(--warm);border:1px solid var(--line);border-radius:14px;padding:16px 17px;
+  }
+  .split-card .cap{
+    font-size:13px;font-weight:700;letter-spacing:.03em;margin-bottom:7px;
+    display:inline-block;padding:3px 10px;border-radius:6px;
+  }
+  .cap.surface{background:var(--amber-tint);color:#a9711a;}
+  .cap.structure{background:var(--teal-tint);color:var(--teal-deep);}
+  .split-card ul{margin:0;padding-left:1.15em;}
+  .split-card li{font-size:15.5px;margin-bottom:5px;line-height:1.6;}
+  .split-card li:last-child{margin-bottom:0;}
+
+  .insight{
+    background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--amber);
+    border-radius:12px;padding:14px 17px;margin-bottom:12px;font-size:16px;line-height:1.75;
+  }
+  .insight b{color:var(--teal-deep);}
+
+  .step1{
+    background:linear-gradient(135deg,var(--teal-tint),var(--amber-tint));
+    border:1px solid var(--line);border-radius:16px;padding:20px 20px;margin-bottom:24px;
+  }
+  .step1 .lbl{font-size:13.5px;font-weight:700;color:var(--teal-deep);letter-spacing:.05em;margin-bottom:6px;}
+  .step1 .txt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:18px;line-height:1.6;}
+  .phase-chip{
+    display:inline-block;margin-top:12px;font-size:13px;font-weight:700;
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 13px;color:var(--ink-soft);
+  }
+  .phase-chip b{color:var(--coral-deep);}
+  .phase-note{
+    margin:12px 0 0;font-size:13.5px;line-height:1.7;color:var(--ink-soft);
+  }
+
+  .cta-box{
+    background:var(--ink);color:#fff;border-radius:20px;padding:26px 22px;text-align:center;margin-bottom:16px;
+  }
+  .cta-box .k{
+    font-size:13.5px;letter-spacing:.08em;color:var(--amber);font-weight:700;margin-bottom:8px;
+  }
+  .cta-box h3{
+    font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;
+    font-size:clamp(20px,4.6vw,24px);line-height:1.5;margin:0 0 10px;color:#fff;
+  }
+  .cta-box p{color:#cdd8d5;font-size:15.5px;margin:0 0 20px;line-height:1.75;}
+  .cta-box .btn-cta{max-width:420px;margin:0 auto;}
+  .cta-box .fine{color:#8fa39e;font-size:13px;margin-top:14px;line-height:1.6;}
+  .cta-form{max-width:420px;margin:4px auto 0;display:flex;flex-direction:column;gap:11px;}
+  .cta-form input[type=email]{
+    width:100%;font-family:inherit;font-size:17px;color:var(--ink);
+    padding:14px 16px;border:1.5px solid transparent;border-radius:13px;background:#fff;text-align:center;
+    transition:box-shadow .15s,border-color .15s;
+  }
+  .cta-form input[type=email]::placeholder{color:#9aa9a5;}
+  .cta-form input[type=email]:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 4px rgba(225,154,52,.3);}
+  .cta-form .btn-cta{width:100%;}
+  .cta-err{color:#ffc9be;font-size:14px;margin:2px 0 0;min-height:1px;font-weight:700;}
+  .cta-done{max-width:440px;margin:6px auto 0;}
+  .cta-done .check{
+    width:52px;height:52px;border-radius:50%;margin:0 auto 12px;
+    background:var(--teal);color:#fff;display:grid;place-items:center;font-size:26px;font-weight:700;
+  }
+  .cta-done p{color:#eaf2f0;font-size:16.5px;margin:0;line-height:1.75;}
+  .line-alt{
+    display:inline-block;margin-top:16px;color:#a8d6cd;font-size:14px;
+    text-decoration:underline;
+  }
+  .line-alt:hover{color:#fff;}
+
+  .restart{margin:8px 0 40px;text-align:center;}
+  .restart button{
+    background:none;border:none;color:var(--ink-soft);font-family:inherit;font-size:14px;
+    text-decoration:underline;cursor:pointer;padding:8px;
+  }
+  .restart button:hover{color:var(--teal-deep);}
+
+  footer{
+    text-align:center;color:var(--ink-soft);font-size:12.5px;
+    padding:24px 20px 40px;border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="band">
+    <span class="brand"><span class="dot"></span>SCIA — Second Career Incubation Association</span>
+  </div>
+
+  <!-- ============ INTRO ============ -->
+  <section id="intro" class="screen active">
+    <div style="text-align:center;">
+      <span class="eyebrow">3分でわかる無料診断</span>
+      <h1 class="title zen">信頼される<br><span class="u">50代プロフィール度</span>診断</h1>
+    </div>
+    <div class="lead">
+      <p>LinkedInを作ったけれど、<br class="mob">「何を書けばいいのか」「どう見られているのか」迷うことはありませんか？</p>
+      <p>この診断では、あなたのプロフィールが<span class="accent">“社会に信頼される発信”</span>になっているかをチェックします。</p>
+      <p>3分で、あなたの<span class="accent">「社会資本化の第一歩」</span>が見えてきます。</p>
+    </div>
+
+    <button class="btn btn-primary" onclick="startQuiz()">診断をはじめる <span class="arw">→</span></button>
+    <p class="note">全6問・約3分／登録不要ですぐ始められます</p>
+  </section>
+
+  <!-- ============ QUESTIONS ============ -->
+  <section id="quiz" class="screen">
+    <div class="prog">
+      <div class="prog-top">
+        <span class="prog-step" id="progStep">質問 1 / 6</span>
+        <span class="prog-pct" id="progPct">17%</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+    <div id="qnum" class="qnum"></div>
+    <h2 id="qtext" class="qtext"></h2>
+    <div id="opts" class="opts"></div>
+    <div class="qnav">
+      <button class="btn btn-ghost" id="backBtn" onclick="prevQ()">← 戻る</button>
+      <span class="spacer"></span>
+    </div>
+  </section>
+
+  <!-- ============ RESULT ============ -->
+  <section id="result" class="screen">
+    <div class="result-eyebrow" id="rGreeting">診断結果</div>
+    <div class="type-tag" id="rTag"></div>
+    <h2 class="type-name" id="rName"></h2>
+
+    <div class="path" id="rPath">
+      <div class="path-node" data-stage="A">
+        <div class="markpin">1</div>
+        <div class="path-lbl">発掘前期<br>言語化する</div>
+      </div>
+      <div class="path-node" data-stage="B">
+        <div class="markpin">2</div>
+        <div class="path-lbl">発信準備期<br>整えて届ける</div>
+      </div>
+      <div class="path-node" data-stage="C">
+        <div class="markpin">3</div>
+        <div class="path-lbl">社会資本化期<br>つながりへ</div>
+      </div>
+    </div>
+
+    <div class="r-block">
+      <h3><span class="ic teal">🧭</span>いまのあなたの見立て</h3>
+      <div id="rRead"></div>
+    </div>
+
+    <div class="r-block" id="rInsightWrap">
+      <h3><span class="ic amber">🔎</span>回答の組み合わせから見えたこと</h3>
+      <div id="rInsights"></div>
+    </div>
+
+    <div class="r-block">
+      <h3><span class="ic coral">🧩</span>課題を2つの層に分けると</h3>
+      <div class="split">
+        <div class="split-card">
+          <span class="cap surface">表面課題</span>
+          <ul id="rSurface"></ul>
+        </div>
+        <div class="split-card">
+          <span class="cap structure">構造課題</span>
+          <ul id="rStructure"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="step1">
+      <div class="lbl">▶ 最初の一手</div>
+      <div class="txt" id="rFirst"></div>
+      <span class="phase-chip" id="rPhase"></span>
+      <p class="phase-note">Hatch・Network・Designは、3ヶ月プログラムを通して順に進む3つの段階です。どこか一つの段階だけを単独で受けるものではなく、あなたの“入口”がどこかを示しています。</p>
+    </div>
+
+    <div class="cta-box">
+      <div class="k">無料プレゼント</div>
+      <h3 id="ctaTitle"></h3>
+      <p id="ctaBody"></p>
+
+      <div id="ctaForm" class="cta-form">
+        <input type="text" id="ctaName" placeholder="お名前（任意）" autocomplete="name" aria-label="お名前">
+        <input type="email" id="ctaEmail" placeholder="メールアドレスを入力" autocomplete="email" inputmode="email" aria-label="メールアドレス" onkeydown="if(event.key==='Enter'){event.preventDefault();submitEmail();}">
+        <button class="btn btn-cta" id="ctaBtn" type="button" onclick="submitEmail()">
+          <span id="ctaLabel">詳細PDFを受け取る</span> <span class="arw">→</span>
+        </button>
+        <p class="cta-err" id="ctaErr" role="alert"></p>
+      </div>
+
+      <div id="ctaDone" class="cta-done" style="display:none;">
+        <div class="check">✓</div>
+        <p id="ctaDoneMsg"></p>
+        <a class="btn btn-cta" id="pdfNow" href="#" target="_blank" rel="noopener" style="display:none;max-width:420px;margin:14px auto 0;">
+          今すぐPDFをダウンロード <span class="arw">→</span>
+        </a>
+      </div>
+
+      <p class="fine" id="ctaFine">ご登録のアドレス宛に詳細PDFと今後のご案内をお送りします。配信はいつでも解除できます。</p>
+      <a class="line-alt" id="lineAlt" href="#" target="_blank" rel="noopener" style="display:none;">LINEで受け取る方はこちら</a>
+    </div>
+
+    <div class="restart">
+      <button onclick="restart()">もう一度診断する</button>
+    </div>
+  </section>
+
+  <footer>
+    信頼される50代プロフィール度診断 ｜ SCIA（Second Career Incubation Association）<br>
+    人的資本を、社会資本へ。
+  </footer>
+</div>
+
+<script>
+/* =========================================================
+   設定：デプロイ時にここだけ差し替えてください
+   ========================================================= */
+const CONFIG = {
+  // 【必須】Google Apps Script WebアプリのURL（/exec で終わるもの）を貼ってください。
+  //  ここへ回答＋メアドが送られ、GAS側でPDFを自動送信します。空欄なら送信されません。
+  WEBHOOK_URL: "https://script.google.com/macros/s/AKfycbxmH1T5gohgwGEBJm7ZEndARV19OLKHZrasDd12wEU1Egxax0YFgiOISn4L6WODyW3z/exec",
+  // 【任意】その場でも即DLさせたい場合のPDF直リンク（例：GitHub Pages上のPDF）。
+  //  設定すると完了画面に「今すぐダウンロード」を表示。空欄ならメール送付のみ。
+  PDF_URL: "",
+  // 【任意】LINEでも受け取れるようにする場合の友達追加URL。
+  LINE_URL: ""
+};
+
+/* =========================================================
+   質問データ（引き継ぎレポートの仕様に準拠）
+   score: A=1 / B=2 / C=3 / D=4　※点数は本人に表示しない
+   type:  "normal"（通常質問=Q1-Q5）/ "aux"（補助質問=Q6）
+   ========================================================= */
+const QUESTIONS = [
+  { id:"Q1", type:"normal",
+    text:"LinkedInプロフィールを見た人に、あなたの強みが伝わっていると思いますか？",
+    opts:[
+      {k:"A", label:"伝わっていると思う"},
+      {k:"B", label:"ある程度は伝わっている"},
+      {k:"C", label:"伝わりきっていない気がする"},
+      {k:"D", label:"ほとんど伝わっていない"}
+    ]},
+  { id:"Q2", type:"normal",
+    text:"あなたのプロフィール文は、どんな印象を与えていると思いますか？",
+    opts:[
+      {k:"A", label:"社会的価値や貢献が伝わる"},
+      {k:"B", label:"経験や実績が中心"},
+      {k:"C", label:"経歴の羅列になっている"},
+      {k:"D", label:"何を伝えたいか自分でも曖昧"}
+    ]},
+  { id:"Q3", type:"normal",
+    text:"LinkedInで発信する際、どんな迷いが一番大きいですか？",
+    opts:[
+      {k:"A", label:"特に迷いはない"},
+      {k:"B", label:"反応が少なくて不安"},
+      {k:"C", label:"何を書けばいいかわからない"},
+      {k:"D", label:"批判や誤解が怖い"}
+    ]},
+  { id:"Q4", type:"normal",
+    text:"あなたの経験を社会にどう役立てたいか、言葉にできていますか？",
+    opts:[
+      {k:"A", label:"明確に言語化できている"},
+      {k:"B", label:"なんとなく方向性はある"},
+      {k:"C", label:"まだ整理できていない"},
+      {k:"D", label:"考えたことがない"}
+    ]},
+  { id:"Q5", type:"normal",
+    text:"発信を続けるための仲間や応援ネットワークはありますか？",
+    opts:[
+      {k:"A", label:"すでにある"},
+      {k:"B", label:"一部ある"},
+      {k:"C", label:"これから作りたい"},
+      {k:"D", label:"まったくない"}
+    ]},
+  { id:"Q6", type:"aux",
+    text:"これから整えたいのは、どの部分ですか？",
+    opts:[
+      {k:"A", label:"プロフィール文の整理"},
+      {k:"B", label:"発信テーマの明確化"},
+      {k:"C", label:"ネットワークづくり"},
+      {k:"D", label:"まだわからない"}
+    ]}
+];
+const SCORE = {A:1, B:2, C:3, D:4};
+
+/* =========================================================
+   タイプ別の結果コンテンツ
+   ========================================================= */
+const TYPES = {
+  A:{
+    tag:"発掘前期",
+    name:'まだ光る前の<span class="stage">原石</span>タイプ',
+    stage:"A",
+    read:[
+      "プロフィールはあっても、あなたの経験がまだ「経歴の羅列」にとどまり、<b>社会にどう役立つ価値なのか</b>が言葉になりきっていない段階です。",
+      "これは発信スキルの問題ではありません。長いキャリアで培ったものを、<b>社会の文脈に翻訳する</b>作業がこれから始まる、というだけのこと。ここが整うと、同じ経験が一気に「伝わる強み」に変わります。"
+    ],
+    surface:["プロフィール文が経歴の羅列になっている","そもそも何を書けばいいかわからない"],
+    structure:["経験を“社会的価値”として再定義する言語化","誰の・どんな役に立つのかという軸の設定"],
+    first:"まずは経験の棚卸しから。「これまで誰の、どんな困りごとを解いてきたか」を書き出すところから始めましょう。",
+    phase:'3ヶ月プログラムでの入口は <b>Hatch（孵化）</b>'
+  },
+  B:{
+    tag:"発信準備期",
+    name:'方向は見えている<span class="stage">準備期</span>タイプ',
+    stage:"B",
+    read:[
+      "自分の価値の方向性は見えている一方で、「どう見られているか」への不安や、反応の少なさが発信を止めている段階です。",
+      "伝えたい軸はもうあります。あとは、それを<b>社会に届く形に整え、続けられる仕組み</b>をつくるフェーズ。一人で抱え込む設計になっていないかが、次の分かれ道です。"
+    ],
+    surface:["発信への反応が少なく不安","発信テーマが定まりきらない"],
+    structure:["発信を支える仲間・応援ネットワークの設計","“続く”ための小さな習慣とテーマ軸"],
+    first:"発信テーマを1〜2本に絞り、感想をくれる少人数のつながりを先に確保しましょう。続けられる設計が先、量はあと。",
+    phase:'3ヶ月プログラムでの入口は <b>Network（つながり）</b>'
+  },
+  C:{
+    tag:"社会資本化期",
+    name:'信頼が動き出す<span class="stage">社会資本化</span>タイプ',
+    stage:"C",
+    read:[
+      "すでに自分の価値を言語化し、社会に伝える構造が動き始めている段階です。土台はできています。",
+      "ここからは、積み上げた信頼を<b>“つながり”や“機会”に変える</b>社会資本化のフェーズ。発信を資産として設計し、登壇・出版・協業といった次の舞台へ広げていく段階です。"
+    ],
+    surface:["発信の質・一貫性をさらに高めたい","次の展開が個別最適にとどまっている"],
+    structure:["信頼を社会資本（つながり・機会）へ変換する設計","発信を資産化し、登壇・出版・協業へ展開する仕組み"],
+    first:"これまでの発信を棚卸しして“資産”として束ね、次の機会（登壇・出版・協業）に接続する設計に入りましょう。",
+    phase:'3ヶ月プログラムでの入口は <b>Design（設計）</b>'
+  }
+};
+
+/* =========================================================
+   状態
+   ========================================================= */
+const state = { profile:{}, answers:{}, idx:0 };
+
+/* ---- intro → quiz ---- */
+function startQuiz(){
+  state.profile = {};
+  state.idx = 0;
+  show("quiz");
+  renderQ();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ---- render a question ---- */
+function renderQ(){
+  const q = QUESTIONS[state.idx];
+  const n = state.idx + 1;
+  document.getElementById("progStep").textContent = `質問 ${n} / ${QUESTIONS.length}`;
+  const pct = Math.round((n / QUESTIONS.length) * 100);
+  document.getElementById("progPct").textContent = pct + "%";
+  document.getElementById("progFill").style.width = pct + "%";
+  document.getElementById("qnum").textContent = q.id;
+  document.getElementById("qtext").textContent = q.text;
+
+  const box = document.getElementById("opts");
+  box.innerHTML = "";
+  q.opts.forEach(o=>{
+    const b = document.createElement("button");
+    b.className = "opt" + (state.answers[q.id]===o.k ? " sel":"");
+    b.setAttribute("type","button");
+    b.innerHTML = `<span class="mk">${o.k}</span><span>${o.label}</span>`;
+    b.onclick = ()=> choose(q.id, o.k);
+    box.appendChild(b);
+  });
+  document.getElementById("backBtn").style.visibility = state.idx===0 ? "hidden":"visible";
+}
+
+/* ---- choose an option → auto advance ---- */
+function choose(qid, k){
+  state.answers[qid] = k;
+  renderQ();
+  setTimeout(()=>{
+    if(state.idx < QUESTIONS.length - 1){
+      state.idx++;
+      renderQ();
+      window.scrollTo({top:0, behavior:"smooth"});
+    }else{
+      finish();
+    }
+  }, 220);
+}
+function prevQ(){
+  if(state.idx>0){ state.idx--; renderQ(); window.scrollTo({top:0,behavior:"smooth"}); }
+}
+
+/* =========================================================
+   採点 → タイプ判定
+   ========================================================= */
+function scoreOf(qid){ return SCORE[state.answers[qid]] || 0; }
+
+function determineType(){
+  // 通常質問（Q1-Q5）合計でタイプ判定：高いほど準備不足
+  const normalIds = QUESTIONS.filter(q=>q.type==="normal").map(q=>q.id);
+  const normalTotal = normalIds.reduce((s,id)=> s + scoreOf(id), 0); // 5-20
+  let type;
+  if(normalTotal >= 15) type = "A";        // 15-20 発掘前期
+  else if(normalTotal >= 10) type = "B";   // 10-14 発信準備期
+  else type = "C";                         // 5-9  社会資本化期
+  return { type, normalTotal };
+}
+
+/* 補助質問Q6（行動意欲）でPDFの訴求を出し分け。獲得アクションはメアド登録で統一。 */
+function ctaFor(type){
+  const q6 = state.answers["Q6"];
+  // 具体的な整えたい部分がある(A/B/C) = 行動意欲が高い → 一歩目を後押しするPDF
+  // 「まだわからない」(D) → まず全体像がわかるPDF
+  const highIntent = (q6 === "A" || q6 === "B" || q6 === "C");
+  if(highIntent){
+    return {
+      title:"あなたの“最初の一手”をまとめた<br>詳細ガイドPDFをお送りします",
+      body:""
+    };
+  }
+  return {
+    title:"3ヶ月プログラムの全体像がわかる<br>詳細ガイドPDFをお送りします",
+    body:"人的資本を社会資本へ変える3ヶ月（Hatch→Network→Design）の流れと、まず何から始めればいいかを1冊にまとめました。"
+  };
+}
+/* メールアドレスの簡易バリデーション */
+function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+/* =========================================================
+   組み合わせインサイト（回答をそのまま返さない）
+   ========================================================= */
+function buildInsights(){
+  const out = [];
+  const s = scoreOf;
+  // Q1×Q2：自己認識と社会的印象のズレ
+  if(s("Q1")>=3 && s("Q2")>=3){
+    out.push("<b>自己認識と、社会からの見え方の間にズレ</b>が生まれています。プロフィールが「経歴」として読まれ、あなたの価値として届いていない可能性があります。");
+  }
+  // Q3×Q5：行動ハードルと支援構造
+  if(s("Q3")>=3 && s("Q5")>=3){
+    out.push("<b>発信のハードルの高さ</b>と、それを<b>支える応援ネットワークの薄さ</b>が重なっています。発信が“一人で続ける設計”になっているのかもしれません。");
+  }
+  // Q4×Q6：社会的意義の言語化と行動意欲
+  if(s("Q4")>=3){
+    out.push("経験を「社会にどう役立てるか」の<b>言語化がこれからの段階</b>です。ここが定まると、発信の軸がぶれなくなります。");
+  }
+  // ポジティブ側の見立ても拾う
+  if(s("Q4")<=2 && s("Q5")<=2){
+    out.push("<b>価値の言語化と支えるつながり</b>の両方が動き始めています。あとはそれを機会につなげる設計が次の焦点です。");
+  }
+  return out.slice(0,2);
+}
+
+/* =========================================================
+   結果表示
+   ========================================================= */
+function finish(){
+  const { type } = determineType();
+  const t = TYPES[type];
+
+  document.getElementById("rGreeting").textContent = "あなたの診断結果";
+
+  document.getElementById("rTag").textContent = "段階：" + t.tag;
+  document.getElementById("rName").innerHTML = t.name;
+
+  // stage path highlight
+  const stages = ["A","B","C"];
+  document.querySelectorAll("#rPath .path-node").forEach(node=>{
+    const st = node.dataset.stage;
+    node.classList.remove("on","done");
+    if(st === type) node.classList.add("on");
+    else if(stages.indexOf(st) < stages.indexOf(type)) node.classList.add("done");
+  });
+
+  document.getElementById("rRead").innerHTML =
+    t.read.map(p=>`<p>${p}</p>`).join("");
+
+  // insights
+  const insights = buildInsights();
+
+  // PDF生成用に、画面と同じ結果内容を構造化して保持（HTMLタグは除去）
+  state.result = {
+    typeCode: type,
+    tag: t.tag,
+    name: stripTags(t.name),
+    read: t.read.map(stripTags),
+    insights: insights.map(stripTags),
+    surface: t.surface.slice(),
+    structure: t.structure.slice(),
+    first: t.first,
+    phase: stripTags(t.phase)
+  };
+  const iWrap = document.getElementById("rInsightWrap");
+  if(insights.length){
+    iWrap.style.display = "";
+    document.getElementById("rInsights").innerHTML =
+      insights.map(x=>`<div class="insight">${x}</div>`).join("");
+  }else{
+    iWrap.style.display = "none";
+  }
+
+  document.getElementById("rSurface").innerHTML   = t.surface.map(x=>`<li>${x}</li>`).join("");
+  document.getElementById("rStructure").innerHTML = t.structure.map(x=>`<li>${x}</li>`).join("");
+  document.getElementById("rFirst").textContent   = t.first;
+  document.getElementById("rPhase").innerHTML      = t.phase;
+
+  state.type = type;
+
+  // CTA（PDFリードマグネット）
+  const cta = ctaFor(type);
+  document.getElementById("ctaTitle").innerHTML = cta.title;
+  const bodyEl = document.getElementById("ctaBody");
+  bodyEl.textContent = cta.body || "";
+  bodyEl.style.display = cta.body ? "" : "none";
+
+  // フォーム状態をリセット（診断し直したとき用）
+  document.getElementById("ctaForm").style.display = "";
+  document.getElementById("ctaDone").style.display = "none";
+  document.getElementById("ctaFine").style.display = "";
+  document.getElementById("ctaEmail").value = "";
+  document.getElementById("ctaName").value = "";
+  document.getElementById("ctaErr").textContent = "";
+
+  // 任意：LINE導線
+  const lineAlt = document.getElementById("lineAlt");
+  if(CONFIG.LINE_URL){ lineAlt.href = CONFIG.LINE_URL; lineAlt.style.display = ""; }
+  else{ lineAlt.style.display = "none"; }
+
+  show("result");
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* =========================================================
+   メールアドレス獲得 → PDF送付
+   ========================================================= */
+function submitEmail(){
+  const input = document.getElementById("ctaEmail");
+  const err = document.getElementById("ctaErr");
+  const email = input.value.trim();
+  const name = document.getElementById("ctaName").value.trim();
+  if(!isEmail(email)){
+    err.textContent = "メールアドレスの形式をご確認ください。";
+    input.focus();
+    return;
+  }
+  err.textContent = "";
+  state.profile.name = name;
+  submitLead(email);
+
+  // 完了表示
+  document.getElementById("ctaForm").style.display = "none";
+  document.getElementById("ctaFine").style.display = "none";
+  const done = document.getElementById("ctaDone");
+  done.style.display = "";
+  const greet = name ? `${escapeHtml(name)} さん、` : "";
+  document.getElementById("ctaDoneMsg").innerHTML =
+    `${greet}<b style="color:#fff;">${escapeHtml(email)}</b> 宛に詳細ガイドPDFをお送りします。<br>数分以内に届かない場合は迷惑メールフォルダをご確認ください。`;
+  const pdfNow = document.getElementById("pdfNow");
+  if(CONFIG.PDF_URL){ pdfNow.href = CONFIG.PDF_URL; pdfNow.style.display = ""; }
+  else{ pdfNow.style.display = "none"; }
+}
+
+/* ---- 回答＋メアドをエンドポイント（GAS Webアプリ等）へ送信 ---- */
+/*  GitHub Pages（静的）からGoogle Apps Scriptへ送るため、
+    Content-Typeは text/plain・mode:'no-cors' にしています（CORSプリフライト回避）。
+    サーバー側は e.postData.contents を JSON.parse して受け取ります。          */
+function submitLead(email){
+  if(!CONFIG.WEBHOOK_URL) return;
+  const payload = {
+    email: email || "",
+    name: (state.profile && state.profile.name) || "",
+    type: state.type || "",
+    result: state.result || null,
+    profile: state.profile,
+    answers: state.answers,
+    at: new Date().toISOString()
+  };
+  try{
+    fetch(CONFIG.WEBHOOK_URL,{
+      method:"POST",
+      mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(payload),
+      keepalive:true
+    }).catch(()=>{});
+  }catch(e){}
+}
+
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function stripTags(s){ return String(s).replace(/<[^>]+>/g,''); }
+
+/* ---- helpers ---- */
+function show(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+function restart(){
+  state.answers = {}; state.idx = 0;
+  show("intro");
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+</script>
+</body>
+</html>
