@@ -316,6 +316,43 @@
     margin:12px 0 0;font-size:13.5px;line-height:1.7;color:var(--ink-soft);
   }
 
+  /* ---- score ---- */
+  .score-box{
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    padding:20px 22px;margin:6px 0 16px;box-shadow:var(--shadow);
+  }
+  .score-label{font-size:14px;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;}
+  .score-num{font-family:"Zen Kaku Gothic New",sans-serif;line-height:1.1;margin:4px 0 12px;}
+  .score-num #rScore{font-size:56px;font-weight:900;color:var(--teal-deep);}
+  .score-unit{font-size:24px;font-weight:700;color:var(--teal-deep);margin-left:2px;}
+  .score-max{font-size:14px;color:var(--ink-soft);margin-left:10px;}
+  .score-bar{height:12px;border-radius:99px;background:var(--line);overflow:hidden;}
+  .score-fill{
+    height:100%;border-radius:99px;width:0;
+    background:linear-gradient(90deg,var(--teal),var(--amber));
+    transition:width .9s cubic-bezier(.2,.7,.3,1);
+  }
+
+  /* ---- phase scores ---- */
+  .phase-scores{
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    padding:18px 22px 16px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .ps-title{font-size:14px;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;margin-bottom:12px;}
+  .ps-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .ps-name{
+    flex:0 0 108px;font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:700;font-size:15px;color:var(--ink);line-height:1.25;
+  }
+  .ps-name span{display:block;font-size:11.5px;font-weight:400;color:var(--ink-soft);}
+  .ps-track{flex:1;height:10px;border-radius:99px;background:var(--line);overflow:hidden;}
+  .ps-fill{height:100%;border-radius:99px;width:0;background:var(--teal);transition:width .9s cubic-bezier(.2,.7,.3,1);}
+  .ps-val{flex:0 0 44px;text-align:right;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;color:var(--ink);}
+  .ps-row.focus .ps-fill{background:var(--coral);}
+  .ps-row.focus .ps-name,.ps-row.focus .ps-val{color:var(--coral-deep);}
+  .ps-note{margin:12px 0 0;font-size:14px;line-height:1.75;color:var(--ink);}
+  .ps-note b{color:var(--coral-deep);}
+
   .cta-box{
     background:var(--ink);color:#fff;border-radius:20px;padding:26px 22px;text-align:center;margin-bottom:16px;
   }
@@ -411,6 +448,32 @@
     <div class="type-tag" id="rTag"></div>
     <h2 class="type-name" id="rName"></h2>
 
+    <div class="score-box">
+      <div class="score-label">あなたの社会資本化度</div>
+      <div class="score-num"><span id="rScore">--</span><span class="score-unit">点</span><span class="score-max">／95点満点</span></div>
+      <div class="score-bar"><div class="score-fill" id="rScoreFill"></div></div>
+    </div>
+
+    <div class="phase-scores">
+      <div class="ps-title">3つの柱ごとの診断</div>
+      <div class="ps-row" id="psHatch">
+        <div class="ps-name">Hatch<span>言語化</span></div>
+        <div class="ps-track"><div class="ps-fill"></div></div>
+        <div class="ps-val">--</div>
+      </div>
+      <div class="ps-row" id="psNetwork">
+        <div class="ps-name">Network<span>つながり</span></div>
+        <div class="ps-track"><div class="ps-fill"></div></div>
+        <div class="ps-val">--</div>
+      </div>
+      <div class="ps-row" id="psDesign">
+        <div class="ps-name">Design<span>設計</span></div>
+        <div class="ps-track"><div class="ps-fill"></div></div>
+        <div class="ps-val">--</div>
+      </div>
+      <p class="ps-note" id="psNote"></p>
+    </div>
+
     <div class="path" id="rPath">
       <div class="path-node" data-stage="A">
         <div class="markpin">1</div>
@@ -454,7 +517,7 @@
       <div class="lbl">▶ 最初の一手</div>
       <div class="txt" id="rFirst"></div>
       <span class="phase-chip" id="rPhase"></span>
-      <p class="phase-note">Hatch・Network・Designは、3ヶ月プログラムを通して順に進む3つの段階です。どこか一つの段階だけを単独で受けるものではなく、あなたの“入口”がどこかを示しています。</p>
+      <p class="phase-note">社会資本化は、Hatch（言語化）・Network（つながり）・Design（設計）の3本の柱で支えられています。どれか1本が弱いと、他の2本が強くても信頼は機会につながりません。3ヶ月プログラムでは3本すべてを通して整えつつ、あなたの重点フェーズに厚めに時間を使います。</p>
     </div>
 
     <div class="cta-box">
@@ -680,7 +743,24 @@ function determineType(){
   if(normalTotal >= 15) type = "A";        // 15-20 発掘前期
   else if(normalTotal >= 10) type = "B";   // 10-14 発信準備期
   else type = "C";                         // 5-9  社会資本化期
-  return { type, normalTotal };
+
+  // 総合スコア「社会資本化度」：35〜95点（点が高いほど良い）
+  const score = 95 - (normalTotal - 5) * 4;
+
+  // フェーズ別スコア（各2問・合計2〜8点 → 35〜95点に変換）
+  const phaseSum = (a,b)=> scoreOf(a) + scoreOf(b);
+  const toScore  = sum => 95 - (sum - 2) * 10;
+  const phases = {
+    hatch:   toScore(phaseSum("Q2","Q4")), // 言語化
+    network: toScore(phaseSum("Q3","Q5")), // つながり
+    design:  toScore(phaseSum("Q1","Q6"))  // 設計
+  };
+  // いちばん弱いフェーズ＝重点フェーズ（同点なら Hatch→Network→Design の順で手前を優先）
+  const order = ["hatch","network","design"];
+  const focusKey = order.reduce((min,k)=> phases[k] < phases[min] ? k : min, "hatch");
+  const PHASE_LABEL = { hatch:"Hatch（言語化）", network:"Network（つながり）", design:"Design（設計）" };
+
+  return { type, normalTotal, score, phases, focusKey, focusLabel: PHASE_LABEL[focusKey] };
 }
 
 /* 補助質問Q6（行動意欲）でPDFの訴求を出し分け。獲得アクションはメアド登録で統一。 */
@@ -732,12 +812,38 @@ function buildInsights(){
    結果表示
    ========================================================= */
 function finish(){
-  const { type } = determineType();
+  const R = determineType();
+  const type = R.type;
   const t = TYPES[type];
+
+  // ---- スコア表示 ----
+  document.getElementById("rScore").textContent = R.score;
+  requestAnimationFrame(()=>{ document.getElementById("rScoreFill").style.width = R.score + "%"; });
+
+  // ---- フェーズ別バー ----
+  const PS = [
+    { key:"hatch",   el:"psHatch"   },
+    { key:"network", el:"psNetwork" },
+    { key:"design",  el:"psDesign"  }
+  ];
+  PS.forEach(p=>{
+    const row = document.getElementById(p.el);
+    row.classList.toggle("focus", p.key === R.focusKey);
+    row.querySelector(".ps-val").textContent = R.phases[p.key] + "点";
+    const fill = row.querySelector(".ps-fill");
+    fill.style.width = "0";
+    requestAnimationFrame(()=>{ fill.style.width = R.phases[p.key] + "%"; });
+  });
+  document.getElementById("psNote").innerHTML =
+    `3本の柱のうち、いまのあなたの<b>重点フェーズ（伸びしろ）は ${R.focusLabel}</b> です。ここが整うと、他の2本も活きてきます。`;
+
+  // ---- 重点フェーズチップ ----
+  document.getElementById("rPhase").innerHTML =
+    `あなたの重点フェーズ：<b>${R.focusLabel}</b>`;
 
   document.getElementById("rGreeting").textContent = "あなたの診断結果";
 
-  document.getElementById("rTag").textContent = "段階：" + t.tag;
+  document.getElementById("rTag").textContent = "社会資本化度：" + R.score + "点（" + t.tag + "）";
   document.getElementById("rName").innerHTML = t.name;
 
   // stage path highlight
@@ -765,7 +871,10 @@ function finish(){
     surface: t.surface.slice(),
     structure: t.structure.slice(),
     first: t.first,
-    phase: stripTags(t.phase)
+    phase: stripTags(t.phase),
+    score: R.score,
+    phases: R.phases,
+    focusLabel: R.focusLabel
   };
   const iWrap = document.getElementById("rInsightWrap");
   if(insights.length){
@@ -779,7 +888,6 @@ function finish(){
   document.getElementById("rSurface").innerHTML   = t.surface.map(x=>`<li>${x}</li>`).join("");
   document.getElementById("rStructure").innerHTML = t.structure.map(x=>`<li>${x}</li>`).join("");
   document.getElementById("rFirst").textContent   = t.first;
-  document.getElementById("rPhase").innerHTML      = t.phase;
 
   state.type = type;
 
