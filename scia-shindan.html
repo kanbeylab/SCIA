@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>信頼される50代プロフィール度診断｜SCIA</title>
+<title>50代からの経験の社会資本化度診断｜SCIA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -412,12 +412,12 @@
   <section id="intro" class="screen active">
     <div style="text-align:center;">
       <span class="eyebrow">3分でわかる無料診断</span>
-      <h1 class="title zen">信頼される<br><span class="u">50代プロフィール度</span>診断</h1>
+      <h1 class="title zen">50代からの<br><span class="u">経験の社会資本化度</span>診断</h1>
     </div>
     <div class="lead">
-      <p>LinkedInを作ったけれど、<br class="mob">「何を書けばいいのか」「どう見られているのか」迷うことはありませんか？</p>
-      <p>この診断では、あなたのプロフィールが<span class="accent">“社会に信頼される発信”</span>になっているかをチェックします。</p>
-      <p>3分で、あなたの<span class="accent">「社会資本化の第一歩」</span>が見えてきます。</p>
+      <p>これまで積み上げてきた経験はある。<br class="mob">それなのに、いざ「何ができる人か」を伝えようとすると、言葉に詰まる——。</p>
+      <p>その経験は、消えていません。<span class="accent">まだ、社会に伝わる言葉になっていないだけ</span>です。</p>
+      <p>この診断では、あなたの経験が<span class="accent">「社会とつながる資産」</span>になっているかを、3つの柱から見立てます。</p>
     </div>
 
     <button class="btn btn-primary" onclick="startQuiz()">診断をはじめる <span class="arw">→</span></button>
@@ -552,7 +552,7 @@
   </section>
 
   <footer>
-    信頼される50代プロフィール度診断 ｜ SCIA（Second Career Incubation Association）<br>
+    50代からの経験の社会資本化度診断 ｜ SCIA（Second Career Incubation Association）<br>
     人的資本を、社会資本へ。
   </footer>
 </div>
@@ -564,7 +564,7 @@
 const CONFIG = {
   // 【必須】Google Apps Script WebアプリのURL（/exec で終わるもの）を貼ってください。
   //  ここへ回答＋メアドが送られ、GAS側でPDFを自動送信します。空欄なら送信されません。
-  WEBHOOK_URL: "https://script.google.com/macros/s/AKfycbxmH1T5gohgwGEBJm7ZEndARV19OLKHZrasDd12wEU1Egxax0YFgiOISn4L6WODyW3z/exec",
+  WEBHOOK_URL: "https://script.google.com/macros/s/AKfycbxmMu7p9__fUCmxzL0ygLK8AgfMMeAsR3pgpJyPuHmdygBSn2gg_yD4jEA7ViMmg5bh/exec",
   // 【任意】その場でも即DLさせたい場合のPDF直リンク（例：GitHub Pages上のPDF）。
   //  設定すると完了画面に「今すぐダウンロード」を表示。空欄ならメール送付のみ。
   PDF_URL: "",
@@ -579,7 +579,7 @@ const CONFIG = {
    ========================================================= */
 const QUESTIONS = [
   { id:"Q1", type:"normal",
-    text:"LinkedInプロフィールを見た人に、あなたの強みが伝わっていると思いますか？",
+    text:"社外の初対面の人に、あなたの強みは伝わっていると思いますか？",
     opts:[
       {k:"A", label:"伝わっていると思う"},
       {k:"B", label:"ある程度は伝わっている"},
@@ -587,20 +587,20 @@ const QUESTIONS = [
       {k:"D", label:"ほとんど伝わっていない"}
     ]},
   { id:"Q2", type:"normal",
-    text:"あなたのプロフィール文は、どんな印象を与えていると思いますか？",
+    text:"あなたが自分の仕事を紹介するとき、その内容は何が中心になりますか？",
     opts:[
-      {k:"A", label:"社会的価値や貢献が伝わる"},
-      {k:"B", label:"経験や実績が中心"},
-      {k:"C", label:"経歴の羅列になっている"},
+      {k:"A", label:"社会的な価値や貢献"},
+      {k:"B", label:"経験や実績"},
+      {k:"C", label:"所属・肩書き・経歴"},
       {k:"D", label:"何を伝えたいか自分でも曖昧"}
     ]},
   { id:"Q3", type:"normal",
-    text:"LinkedInで発信する際、どんな迷いが一番大きいですか？",
+    text:"社外に向けて自分の考えや経験を発信することについて、どう感じますか？",
     opts:[
-      {k:"A", label:"特に迷いはない"},
-      {k:"B", label:"反応が少なくて不安"},
-      {k:"C", label:"何を書けばいいかわからない"},
-      {k:"D", label:"批判や誤解が怖い"}
+      {k:"A", label:"すでに発信していて、手応えもある"},
+      {k:"B", label:"発信しているが、反応が少なく不安"},
+      {k:"C", label:"やりたいが、何を伝えればいいか分からない"},
+      {k:"D", label:"批判や誤解が怖くて踏み出せない"}
     ]},
   { id:"Q4", type:"normal",
     text:"あなたの経験を社会にどう役立てたいか、言葉にできていますか？",
@@ -611,19 +611,19 @@ const QUESTIONS = [
       {k:"D", label:"考えたことがない"}
     ]},
   { id:"Q5", type:"normal",
-    text:"発信を続けるための仲間や応援ネットワークはありますか？",
+    text:"会社や肩書きを離れても続く、社外のつながりはありますか？",
     opts:[
-      {k:"A", label:"すでにある"},
-      {k:"B", label:"一部ある"},
+      {k:"A", label:"すでに十分ある"},
+      {k:"B", label:"少しはある"},
       {k:"C", label:"これから作りたい"},
-      {k:"D", label:"まったくない"}
+      {k:"D", label:"ほとんどない"}
     ]},
   { id:"Q6", type:"aux",
-    text:"これから整えたいのは、どの部分ですか？",
+    text:"これから最も力を入れたいのは、どの部分ですか？",
     opts:[
-      {k:"A", label:"プロフィール文の整理"},
-      {k:"B", label:"発信テーマの明確化"},
-      {k:"C", label:"ネットワークづくり"},
+      {k:"A", label:"経験を言葉にして伝えられるようにする"},
+      {k:"B", label:"発信するテーマを定める"},
+      {k:"C", label:"社外のつながりを広げる"},
       {k:"D", label:"まだわからない"}
     ]}
 ];
@@ -638,10 +638,10 @@ const TYPES = {
     name:'まだ光る前の<span class="stage">原石</span>タイプ',
     stage:"A",
     read:[
-      "プロフィールはあっても、あなたの経験がまだ「経歴の羅列」にとどまり、<b>社会にどう役立つ価値なのか</b>が言葉になりきっていない段階です。",
+      "あなたの経験は十分に積み上がっている一方で、それがまだ「所属と経歴」として語られていて、<b>社会にどう役立つ価値なのか</b>が言葉になりきっていない段階です。",
       "これは発信スキルの問題ではありません。長いキャリアで培ったものを、<b>社会の文脈に翻訳する</b>作業がこれから始まる、というだけのこと。ここが整うと、同じ経験が一気に「伝わる強み」に変わります。"
     ],
-    surface:["プロフィール文が経歴の羅列になっている","そもそも何を書けばいいかわからない"],
+    surface:["自己紹介が肩書きと経歴の説明になっている","何を伝えればいいか分からない"],
     structure:["経験を“社会的価値”として再定義する言語化","誰の・どんな役に立つのかという軸の設定"],
     first:"まずは経験の棚卸しから。「これまで誰の、どんな困りごとを解いてきたか」を書き出すところから始めましょう。",
     phase:'3ヶ月プログラムでの入口は <b>Hatch（孵化）</b>'
@@ -651,10 +651,10 @@ const TYPES = {
     name:'方向は見えている<span class="stage">準備期</span>タイプ',
     stage:"B",
     read:[
-      "自分の価値の方向性は見えている一方で、「どう見られているか」への不安や、反応の少なさが発信を止めている段階です。",
+      "自分の価値の方向性は見えている一方で、「どう見られているか」への不安や、手応えのなさが次の一歩を止めている段階です。",
       "伝えたい軸はもうあります。あとは、それを<b>社会に届く形に整え、続けられる仕組み</b>をつくるフェーズ。一人で抱え込む設計になっていないかが、次の分かれ道です。"
     ],
-    surface:["発信への反応が少なく不安","発信テーマが定まりきらない"],
+    surface:["発信しても手応えが薄い","伝えるテーマが定まりきらない"],
     structure:["発信を支える仲間・応援ネットワークの設計","“続く”ための小さな習慣とテーマ軸"],
     first:"発信テーマを1〜2本に絞り、感想をくれる少人数のつながりを先に確保しましょう。続けられる設計が先、量はあと。",
     phase:'3ヶ月プログラムでの入口は <b>Network（つながり）</b>'
@@ -664,7 +664,7 @@ const TYPES = {
     name:'信頼が動き出す<span class="stage">社会資本化</span>タイプ',
     stage:"C",
     read:[
-      "すでに自分の価値を言語化し、社会に伝える構造が動き始めている段階です。土台はできています。",
+      "すでに自分の価値を言葉にでき、社会とつながる流れが動き始めている段階です。土台はできています。",
       "ここからは、積み上げた信頼を<b>“つながり”や“機会”に変える</b>社会資本化のフェーズ。発信を資産として設計し、登壇・出版・協業といった次の舞台へ広げていく段階です。"
     ],
     surface:["発信の質・一貫性をさらに高めたい","次の展開が個別最適にとどまっている"],
@@ -772,12 +772,12 @@ function ctaFor(type){
   if(highIntent){
     return {
       title:"あなたの“最初の一手”をまとめた<br>詳細ガイドPDFをお送りします",
-      body:""
+      body:"経験の棚卸しワーク、プロフィールの書き換え例、最初の7日間のステップまで。読んで終わりではなく、書き込んで使える一冊です。"
     };
   }
   return {
-    title:"3ヶ月プログラムの全体像がわかる<br>詳細ガイドPDFをお送りします",
-    body:"人的資本を社会資本へ変える3ヶ月（Hatch→Network→Design）の流れと、まず何から始めればいいかを1冊にまとめました。"
+    title:"あなたの結果をまとめた<br>詳細ガイドPDFをお送りします",
+    body:"3つの柱の見立てに加え、書き込み式のワークと最初の7日間のステップ、3ヶ月プログラムの全体像まで。まず何から始めればいいかが分かります。"
   };
 }
 /* メールアドレスの簡易バリデーション */
