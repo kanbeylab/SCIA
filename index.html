@@ -869,15 +869,10 @@
   var list = document.getElementById('newsList');
   if (!list) return;
 
-  // HTMLに書かれている既存の項目を読み取っておく（過去記事のバックフィル不要）
-  var staticItems = Array.prototype.map.call(
-    list.querySelectorAll('.news-item'),
-    function (li) {
-      var a = li.querySelector('a');
-      var t = function (sel) { var e = li.querySelector(sel); return e ? e.textContent.trim() : ''; };
-      return { date: t('.news-date'), label: t('.news-label'), title: t('.news-title'), link: a ? a.getAttribute('href') : '' };
-    }
-  );
+  // JS失敗時に元へ戻すため、HTMLの静的3件を保持
+  var fallbackHtml = list.innerHTML;
+  list.innerHTML = '<li class="news-item"><div class="news-link">'
+    + '<span class="news-title" style="color:#9ca3af">読み込み中…</span></div></li>';
 
   function esc(s) {
     return String(s == null ? '' : s)
@@ -925,26 +920,22 @@
         : '<div class="news-link">' + inner + '</div>';
       return '<li class="news-item">' + body + '</li>';
     }).join('');
-    if (html) list.innerHTML = html;
+    list.innerHTML = html;
   }
 
-  fetch(GAS_URL, { cache: 'no-store' })
+  fetch(GAS_URL + (GAS_URL.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (data) {
-      var remote = (data && data.status === 'ok' && Array.isArray(data.items)) ? data.items : [];
-      // GASのデータ + HTML内の既存項目 をリンクで重複排除して合体
-      var seen = {}, merged = [];
-      remote.concat(staticItems).forEach(function (it) {
-        if (!it || !it.title) return;
-        var key = (it.link || it.title).trim();
-        if (seen[key]) return;
-        seen[key] = 1;
-        merged.push(it);
-      });
-      render(merged);
+      var items = (data && data.status === 'ok' && Array.isArray(data.items))
+        ? data.items.filter(function (x) { return x && x.title; })
+        : [];
+      // スプレッドシートに登録された内容のみを表示する
+      if (items.length) render(items);
+      else list.innerHTML = fallbackHtml;
     })
     .catch(function (e) {
       console.warn('新着情報の取得に失敗しました（静的表示にフォールバック）', e);
+      list.innerHTML = fallbackHtml;
     });
 })();
 </script>
