@@ -104,7 +104,61 @@
 
 <div class="container">
   <div class="filters" id="filters"></div>
-  <ul class="list" id="list"></ul>
+
+  <!-- ===========================================================
+       記事の追加方法：
+       このすぐ下に <li class="card" data-tag="タグ名"> … </li> を
+       1ブロック丸ごとコピーして貼るだけです。上にあるものが最新です。
+       data-tag に入れた文字が、そのまま絞り込みチップになります。
+       タグの色（3色）は自動で割り当てられるので指定不要です。
+       =========================================================== -->
+  <ul class="list" id="list">
+
+    <li class="card" data-tag="LinkedIn">
+      <a href="/column/linkedin-algorithm-kojin/">
+        <div class="card-meta">
+          <span class="card-date">2026.08.14</span>
+          <span class="tag">LinkedIn</span>
+        </div>
+        <h2 class="card-title">会社の看板では、もう届かない</h2>
+        <p class="card-desc">LinkedInがフィードの並べ替えをLLMベースの仕組みに刷新。企業ページの到達は最大80%減、一方で同じ内容を個人が出すと5〜8倍届く。看板の時代が終わり、名前の時代が始まった意味を解説します。</p>
+      </a>
+    </li>
+
+    <li class="card" data-tag="キャリア設計">
+      <a href="/column/obon-tanaoroshi/">
+        <div class="card-meta">
+          <span class="card-date">2026.08.07</span>
+          <span class="tag">キャリア設計</span>
+        </div>
+        <h2 class="card-title">経験はあるのに、価値が見えない</h2>
+        <p class="card-desc">お盆の数日で、これまでの仕事をぜんぶ並べてみる。棚卸しは反省ではなく発見です。45〜54歳で自分の市場価値を「高い」と言える人は17.0%。価値が低いのではなく、当たり前になりすぎて見えなくなっているだけです。</p>
+      </a>
+    </li>
+
+    <li class="card" data-tag="AI・地域">
+      <a href="/column/ai-gyousei-bansou/">
+        <div class="card-meta">
+          <span class="card-date">2026.08.01</span>
+          <span class="tag">AI・地域</span>
+        </div>
+        <h2 class="card-title">行政がAI前提になっても、現場は自力では動けない</h2>
+        <p class="card-desc">内閣人事局がAI前提の行政組織へ舵を切りました。しかし制度が整っても地域の事業者は動けません。ベテランの知識を形式知化できない企業は68.6%。いま必要な50代の伴走力について。</p>
+      </a>
+    </li>
+
+    <li class="card" data-tag="LinkedIn">
+      <a href="/column/50dai-linkedin/">
+        <div class="card-meta">
+          <span class="card-date">2026.08.01</span>
+          <span class="tag">LinkedIn</span>
+        </div>
+        <h2 class="card-title">50代がLinkedInを始めるべき理由と、最初にやる3つのこと</h2>
+        <p class="card-desc">50代にとってLinkedInは転職ツールではなく、肩書きの外で自分を説明する練習場です。多くの人がつまずく3つの場所と、登録した日にやるべき3つのことを解説します。</p>
+      </a>
+    </li>
+
+  </ul>
 </div>
 
 <div class="cta">
@@ -127,6 +181,7 @@
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;font-size:14px;">
       <a href="https://scia.jp/" style="color:#5FAFA2;text-decoration:none;">トップ</a>
       <a href="https://scia.jp/column/" style="color:#5FAFA2;text-decoration:none;">コラム</a>
+      <a href="https://scia.jp/news/" style="color:#5FAFA2;text-decoration:none;">新着情報</a>
       <a href="https://scia.jp/scia-shindan.html" style="color:#5FAFA2;text-decoration:none;">無料診断</a>
       <a href="https://scia.jp/zero/" style="color:#5FAFA2;text-decoration:none;">3ヶ月プログラム</a>
       <a href="https://scia.jp/founder.html" style="color:#5FAFA2;text-decoration:none;">代表プロフィール</a>
@@ -141,98 +196,70 @@
 
 <script>
 /* =========================================================
-   記事を追加するときは、この配列の「先頭」に1つ足すだけです。
-   tag は "LinkedIn" / "言語化" / "キャリア" のいずれかを推奨
-   （増やす場合は自由。色は自動で3種類を巡回します）
+   記事リンクはHTML側（上の <ul id="list">）に静的に書かれています。
+   このスクリプトは、その静的カードを読み取って
+   「絞り込みチップの生成」「タグの色分け」「表示/非表示の切替」
+   だけを担当します（記事リンク自体は生成しません）。
+   これにより Google が各コラムのリンクを確実に辿れます。
    ========================================================= */
-const ARTICLES = [
- {
-    date: "2026.08.14",
-    tag: "LinkedIn",
-    title: "会社の看板では、もう届かない",
-    desc: "LinkedInがフィードの並べ替えをLLMベースの仕組みに刷新。企業ページの到達は最大80%減、一方で同じ内容を個人が出すと5〜8倍届く。看板の時代が終わり、名前の時代が始まった意味を解説します。",
-    url: "/column/linkedin-algorithm-kojin/"
-  },
-  {
-    date: "2026.08.07",
-    tag: "キャリア設計",
-    title: "経験はあるのに、価値が見えない",
-    desc: "お盆の数日で、これまでの仕事をぜんぶ並べてみる。棚卸しは反省ではなく発見です。45〜54歳で自分の市場価値を「高い」と言える人は17.0%。価値が低いのではなく、当たり前になりすぎて見えなくなっているだけです。",
-    url: "/column/obon-tanaoroshi/"
-  },
-{
-    date: "2026.08.01",
-    tag: "AI・地域",
-    title: "行政がAI前提になっても、現場は自力では動けない",
-    desc: "内閣人事局がAI前提の行政組織へ舵を切りました。しかし制度が整っても地域の事業者は動けません。ベテランの知識を形式知化できない企業は68.6%。いま必要な50代の伴走力について。",
-    url: "/column/ai-gyousei-bansou/"
-  },
-  {
-    date: "2026.08.01",
-    tag: "LinkedIn",
-    title: "50代がLinkedInを始めるべき理由と、最初にやる3つのこと",
-    desc: "50代にとってLinkedInは転職ツールではなく、肩書きの外で自分を説明する練習場です。多くの人がつまずく3つの場所と、登録した日にやるべき3つのことを解説します。",
-    url: "/column/50dai-linkedin/"
-  },
+(function () {
+  var listEl   = document.getElementById('list');
+  var filterEl = document.getElementById('filters');
+  if (!listEl || !filterEl) return;
 
-  /* ↑ 新しい記事は、この上に同じ形で足してください。上が最新です。
-  {
-    date: "2026.08.10",
-    tag: "言語化",
-    title: "記事タイトル",
-    desc: "記事の要約を1〜2文で。",
-    url: "/column/スラッグ/"
-  },
-  */
-];
+  var cards = Array.prototype.slice.call(listEl.querySelectorAll('.card'));
+  var current = 'すべて';
 
-const TAG_CLASS = {};
-let ti = 0;
-function tagClass(t){
-  if(!(t in TAG_CLASS)) TAG_CLASS[t] = ['', 'b', 'c'][ti++ % 3];
-  return TAG_CLASS[t];
-}
-function esc(s){
-  return String(s == null ? '' : s)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
-
-const listEl = document.getElementById('list');
-const filterEl = document.getElementById('filters');
-let current = 'すべて';
-
-function render(){
-  const items = current === 'すべて' ? ARTICLES : ARTICLES.filter(a => a.tag === current);
-  if(!items.length){
-    listEl.innerHTML = '<li class="empty">記事を準備中です。</li>';
-    return;
-  }
-  listEl.innerHTML = items.map(a =>
-    '<li class="card"><a href="' + esc(a.url) + '">' +
-      '<div class="card-meta">' +
-        '<span class="card-date">' + esc(a.date) + '</span>' +
-        (a.tag ? '<span class="tag ' + tagClass(a.tag) + '">' + esc(a.tag) + '</span>' : '') +
-      '</div>' +
-      '<h2 class="card-title">' + esc(a.title) + '</h2>' +
-      '<p class="card-desc">' + esc(a.desc) + '</p>' +
-    '</a></li>'
-  ).join('');
-}
-
-function renderFilters(){
-  const tags = ['すべて'].concat([...new Set(ARTICLES.map(a => a.tag).filter(Boolean))]);
-  if(tags.length <= 1){ filterEl.style.display = 'none'; return; }
-  filterEl.innerHTML = tags.map(t =>
-    '<button class="chip' + (t === current ? ' on' : '') + '" data-t="' + esc(t) + '">' + esc(t) + '</button>'
-  ).join('');
-  filterEl.querySelectorAll('.chip').forEach(b => {
-    b.onclick = () => { current = b.dataset.t; renderFilters(); render(); };
+  // タグごとに色クラスを割り当て（出現順に3色を巡回）
+  var TAG_CLASS = {};
+  var ti = 0;
+  cards.forEach(function (card) {
+    var t = card.getAttribute('data-tag');
+    if (t && !(t in TAG_CLASS)) TAG_CLASS[t] = ['', 'b', 'c'][ti++ % 3];
+    var tagEl = card.querySelector('.tag');
+    if (tagEl && t) tagEl.className = 'tag ' + TAG_CLASS[t];
   });
-}
 
-renderFilters();
-render();
+  function escAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
+  function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function applyFilter() {
+    var shown = 0;
+    cards.forEach(function (card) {
+      var match = (current === 'すべて') || (card.getAttribute('data-tag') === current);
+      card.style.display = match ? '' : 'none';
+      if (match) shown++;
+    });
+    var empty = listEl.querySelector('.empty');
+    if (!shown && !empty) {
+      empty = document.createElement('li');
+      empty.className = 'empty';
+      empty.textContent = '記事を準備中です。';
+      listEl.appendChild(empty);
+    } else if (shown && empty) {
+      empty.parentNode.removeChild(empty);
+    }
+  }
+
+  function renderFilters() {
+    var seen = {};
+    var tags = ['すべて'];
+    cards.forEach(function (c) {
+      var t = c.getAttribute('data-tag');
+      if (t && !seen[t]) { seen[t] = 1; tags.push(t); }
+    });
+    if (tags.length <= 1) { filterEl.style.display = 'none'; return; }
+    filterEl.innerHTML = tags.map(function (t) {
+      return '<button class="chip' + (t === current ? ' on' : '') + '" data-t="' + escAttr(t) + '">' + escHtml(t) + '</button>';
+    }).join('');
+    filterEl.querySelectorAll('.chip').forEach(function (b) {
+      b.onclick = function () { current = b.getAttribute('data-t'); renderFilters(); applyFilter(); };
+    });
+  }
+
+  renderFilters();
+  applyFilter();
+})();
 </script>
 </body>
 </html>
