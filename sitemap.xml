@@ -35,6 +35,10 @@
 
   <!-- 各コラム記事 -->
   <url>
+    <loc>https://scia.jp/column/meishi-teinen/</loc>
+    <lastmod>2026-08-17</lastmod>
+  </url>
+  <url>
     <loc>https://scia.jp/column/linkedin-algorithm-kojin/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
