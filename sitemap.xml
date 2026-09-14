@@ -29,6 +29,12 @@
     <priority>0.8</priority>
   </url>
   <!-- 各コラム記事（新しい順） -->
+    <url>
+    <loc>https://scia.jp/column/takaga-sns/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://scia.jp/column/minashi-shinyo/</loc>
     <lastmod>2026-08-19</lastmod>
