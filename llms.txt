@@ -36,8 +36,8 @@ SBA（Social Brand Architect）基準のLinkedInアカウント構築。仲間�
 担当：小口彩子
 
 ### 3ヶ月目：Design（構想）
-強みとビジョンを「出版企画案」という形式で体系化。自分の経験・知識を構造化した成果物が、多様なセカンドキャリアへ向けた設計図となる。
-（出版企画案は出版を約束・保証するものではなく、知識体系化の成果物として位置づける）
+「もしも私が本を書くとしたら」という設定で、自分の経験を1本の企画書（3枚以内）にまとめる。企画書は受講生本人が作成し、編集者が文面で講評を1回行う。
+（企画書は出版を約束・保証するものではなく、経験を言語で外に出せることを確かめるための成果物として位置づける）
 担当：末永晋一郎（心書院株式会社代表）
 LinkedIn：https://www.linkedin.com/in/shinichiro-suenaga-097741377/
 会社URL：https://kokoroshoin.co.jp/
@@ -77,4 +77,4 @@ URL：https://earthmediacorp.com/
 - noteブログ：https://note.com/kanbei1868/
 - 著書Amazonページ：https://www.amazon.co.jp/stores/%E3%81%8A%E3%81%90%E3%81%A1%E3%81%82%E3%82%84%E3%81%93/author/B0GZZT9M7R
 - アースメディア（SBA提携）：https://earthmediacorp.com/
-- 心書院（出版支援提携）：https://kokoroshoin.co.jp/
+- 心書院（3ヶ月目講師・編集者）：https://kokoroshoin.co.jp/
