@@ -288,6 +288,18 @@ h1,h2,h3{line-height:1.35;font-weight:700}
 .cycle div{background:var(--paper);border:1px solid var(--g200);border-radius:14px;padding:16px 16px 14px;position:relative}
 .cycle div b{display:block;font-size:.98rem;margin-bottom:2px}
 .cycle div span{font-size:.82rem;color:var(--g600);line-height:1.5;display:block}
+/* capitals */
+.cap-row{display:grid;grid-template-columns:130px 1fr auto 1fr auto 1fr;gap:10px;align-items:stretch;max-width:880px;margin:0 auto 12px}
+.cap-when{font-size:.85rem;font-weight:700;color:var(--mint-dark);align-self:center}
+.cap-box{background:var(--white);border:1px solid var(--g200);border-radius:14px;padding:14px 16px}
+.cap-box b{display:block;font-size:1rem}
+.cap-box span{display:block;font-size:.82rem;color:var(--g600);line-height:1.5}
+.cap-box.bridge{background:var(--mint-light);border:2px solid var(--mint)}
+.cap-box.gone{background:transparent;border:2px dashed var(--g400);color:var(--g600);display:flex;align-items:center;justify-content:center;text-align:center}
+.cap-arrow{align-self:center;color:var(--salmon);font-weight:700}
+@media(max-width:720px){.cap-row{grid-template-columns:1fr;gap:6px;margin-bottom:24px}.cap-arrow{transform:rotate(90deg);justify-self:center}}
+.problem-line div.hit{border-top-color:var(--salmon)}
+.cite{font-size:.8rem;color:var(--g600);text-align:center;margin-top:28px}
 .cycle div:not(:last-child)::after{content:"›";position:absolute;right:-9px;top:14px;color:var(--mint-dark);font-size:1.2rem;font-weight:700}
 @media(max-width:860px){.cycle div::after{display:none}}
 .kv-placeholder{aspect-ratio:4/3;border:2px dashed var(--g400);border-radius:22px;display:flex;align-items:center;justify-content:center;color:var(--g400);font-size:1rem;text-align:center;line-height:1.6;background:rgba(255,255,255,.4)}
@@ -477,8 +489,43 @@ a.news-link:hover .news-title{color:var(--mint-dark)}
   </div>
 </section>
 
+<!-- CAPITAL -->
+<section class="section bg-white" id="capital">
+  <div class="container">
+    <div class="center mb-12">
+      <h2 class="section-title">会社を離れると、社会資本は会社に返る</h2>
+      <p class="section-desc">経験やスキル（人的資本）は、そのままでは仕事や収入（金融資本）になりません。そのあいだに、人とのつながりと信頼（社会資本）という橋が要ります。</p>
+    </div>
+    <div class="cap-row" aria-label="在職中の三つの資本">
+      <p class="cap-when">在職中</p>
+      <div class="cap-box"><b>人的資本</b><span>スキル・知識・経験</span></div>
+      <span class="cap-arrow" aria-hidden="true">→</span>
+      <div class="cap-box bridge"><b>社会資本</b><span>認知 ×（信用 ＋ 信頼）<br>会社の看板が担っている</span></div>
+      <span class="cap-arrow" aria-hidden="true">→</span>
+      <div class="cap-box"><b>金融資本</b><span>仕事・収入・機会</span></div>
+    </div>
+    <div class="cap-row" aria-label="会社を離れた後の三つの資本">
+      <p class="cap-when">会社を離れた後</p>
+      <div class="cap-box"><b>人的資本</b><span>スキル・知識・経験</span></div>
+      <span class="cap-arrow" aria-hidden="true">→</span>
+      <div class="cap-box gone"><b>橋がない</b></div>
+      <span class="cap-arrow" aria-hidden="true">→</span>
+      <div class="cap-box"><b>金融資本</b><span>仕事・収入・機会</span></div>
+    </div>
+    <p class="lead center" style="margin-top:36px;margin-bottom:56px"><span class="hl">実力が落ちたのではありません。橋がなくなっただけです。</span></p>
+    <p class="section-desc center" style="margin:0 auto 24px">社会資本の式を、三つに分けてみると。</p>
+    <div class="problem-line">
+      <div><h3>認知</h3><p>思い出してもらえること。他人の頭の中にある。</p></div>
+      <div><h3>信用</h3><p>過去の実績への評価。名刺を返すと会社に戻る。</p></div>
+      <div class="hit"><h3>信頼</h3><p>経験に裏打ちされた見立てへの期待。実績がなくても、自分から作れる。</p></div>
+    </div>
+    <p class="lead center" style="margin-top:44px">掛け算と足し算だから、信用がゼロでも社会資本はゼロにならない。<br><span class="hl">実績はゼロでも、経験はゼロではない。</span></p>
+    <p class="cite">「三つの資本」は、山口周『人生の経営戦略』の考え方にもとづいています。</p>
+  </div>
+</section>
+
 <!-- PROBLEM -->
-<section class="section bg-white" id="problem">
+<section class="section" id="problem">
   <div class="container">
     <div class="center mb-12">
       <h2 class="section-title">経験は、まだAIにも人にも渡せる形になっていない</h2>
@@ -493,7 +540,7 @@ a.news-link:hover .news-title{color:var(--mint-dark)}
 </section>
 
 <!-- PRINCIPLE -->
-<section class="section" id="principle">
+<section class="section bg-white" id="principle">
   <div class="container">
     <div class="center mb-12">
       <h2 class="section-title">一番の原因を言い切る人だけが、選ばれる</h2>
@@ -507,6 +554,21 @@ a.news-link:hover .news-title{color:var(--mint-dark)}
     </div>
     <p class="quad-axis">縦：一番の原因　横：解決策</p>
     <p class="lead center" style="margin-top:36px">右下から右上へ。要るのは、新しい解決策ではなく、言い切ること。</p>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="section" id="voice">
+  <div class="container">
+    <div class="center mb-12">
+      <h2 class="section-title">言い切ったことを、言い続ける</h2>
+      <p class="section-desc">実績がポジショニングをつくるのではありません。ポジショニングが実績を創ります。3か月前の投稿は、誰も覚えていない。だから、同じことを何度も言う。</p>
+    </div>
+    <div class="grid-2" style="max-width:760px;margin:0 auto">
+      <div class="card"><h3>言い切る</h3><p>一番の原因を言い切った一文。それがソートリーダーシップ・ステートメント。</p></div>
+      <div class="card"><h3>LinkedInで発信する</h3><p>その一文を、切り口を変えて言い続ける。認知が積み上がり、信頼が築かれる。</p></div>
+    </div>
+    <p class="lead center" style="margin-top:44px">言うことは一つ、切り口は10通り以上。<br><span class="hl">言い続けた先で、「この困りごとなら、あの人」と思い出される。</span></p>
   </div>
 </section>
 
