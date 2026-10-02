@@ -21,6 +21,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <!-- 名刺定年（調査レポートと書籍） -->
+  <url>
+    <loc>https://scia.jp/meishi-teinen/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- コラム一覧 -->
   <url>
     <loc>https://scia.jp/column/</loc>
