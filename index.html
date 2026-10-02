@@ -393,7 +393,8 @@
         @media(max-width:720px){ .webinar-box { grid-template-columns: 1fr; } }
         .webinar-box h3 { font-family: 'Noto Serif JP', serif; font-size: 1.4rem; margin-bottom: 8px; color: var(--g800); }
         .webinar-box p { color: var(--g600); font-size: 0.97rem; line-height: 1.9; }
-        .links2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .links2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media(max-width:900px){ .links2 { grid-template-columns: 1fr 1fr; } }
         @media(max-width:720px){ .links2 { grid-template-columns: 1fr; } }
         .linkcard { display: block; background: #fff; border: 1px solid var(--g200); border-radius: 18px; padding: 28px; transition: transform 0.2s, box-shadow 0.2s; }
         .linkcard:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
@@ -764,6 +765,12 @@
             <a href="https://scia.peatix.com/" target="_blank" rel="noopener noreferrer" class="btn-salmon">ウェビナーの予定を見る</a>
         </div>
         <div class="links2 reveal">
+            <a class="linkcard" href="https://scia.jp/meishi-teinen/">
+                <span class="tag">調査レポート</span>
+                <h3>「名刺定年」実態調査</h3>
+                <p>45〜59歳の管理職300人に聞いた、会社を離れた後の人間関係。レポート（PDF）と書籍『名刺定年』のご案内。</p>
+                <span class="more">レポートと書籍を見る →</span>
+            </a>
             <a class="linkcard" href="https://www.youtube.com/@SCIA_001" target="_blank" rel="noopener noreferrer">
                 <span class="tag">YouTube</span>
                 <h3>SCIA公式チャンネル</h3>
@@ -894,6 +901,7 @@
             <div class="footer-links">
                 <a href="https://scia.jp/">トップ</a>
                 <a href="https://scia.jp/column/">コラム</a>
+                <a href="https://scia.jp/meishi-teinen/">名刺定年（調査レポートと書籍）</a>
                 <a href="https://scia.jp/zero/">第0期生 満員御礼</a>
                 <a href="https://scia.jp/scia-shindan.html">無料診断（プロフィール度チェック）</a>
                 <a href="https://scia.jp/founder.html">代表プロフィール</a>
