@@ -91,3 +91,14 @@
 - JSON-LD（構造化データ）が JSON として読めるか
 - PC 幅と 390px 幅で横はみ出しがないか（Browser ペインで確認できる）
 - 上の「使わない言葉」が増えていないか
+コラムを追加するとき
+
+入力として受け取るもの：タイトル、公開日、タグ（既存の「社会資本」「キャリア設計」「LinkedIn」「AI・地域」から選ぶ。新しいタグは作らず、迷ったら聞く）、検索用の説明文（120字前後）、本文。
+
+column/takaga-sns/index.html をひな形としてコピーし、column/<英数字のスラッグ>/index.html を作る。スラッグはタイトルの意味を英語かローマ字で短く
+head の title・description・canonical・og:*・article:published_time と、JSON-LD の Article（headline・description・datePublished・dateModified・url）と BreadcrumbList を新しい記事に合わせる。author は小口彩子のまま
+<h1> と <article id="body"> の中身を本文に置き換える。節の見出しは <h2>（目次は自動生成）。著者欄（byline）と末尾のCTAはひな形のまま。FAQ は本文に合うものがあれば3問まで、なければ FAQ ブロックごと削除
+column/index.html のカード一覧の先頭に、同じ形式でカードを追加する（日付は 2026.09.14 形式、data-tag と <span class="tag"> にタグ）
+sitemap.xml に https://scia.jp/column/<スラッグ>/ を追加する
+CLAUDE.md の「使わない言葉」が本文に入っていないか確認し、入っていれば直さずに知らせる
+差分を見せて承認をもらってから push。新着情報への掲載はあやこさんがフォームから行う
