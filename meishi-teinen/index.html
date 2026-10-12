@@ -118,6 +118,21 @@ h2 { font-family: 'Noto Serif JP', serif; font-weight: 900; font-size: clamp(1.2
 .btn-wrap { text-align: center; margin: 8px 0 18px; }
 .note { font-size: 0.85rem; color: var(--g600); line-height: 1.8; }
 
+/* download form */
+.dl-form { border-top: 1px solid var(--line); padding-top: 20px; margin-top: 4px; }
+.dl-lead { font-size: 0.95rem; color: var(--g600); }
+.dl-label { display: block; font-weight: 700; font-size: 0.92rem; margin: 14px 0 6px; padding: 0; }
+.req { display: inline-block; background: var(--salmon-light); color: var(--salmon-dark); font-size: 0.7rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; margin-left: 8px; vertical-align: 2px; }
+.dl-input { width: 100%; font: inherit; font-size: 16px; padding: 11px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); }
+.dl-input:focus { outline: 2px solid var(--mint); border-color: var(--mint-dark); }
+.dl-field { border: none; margin: 0 0 4px; padding: 0; }
+.dl-radio { display: block; font-size: 0.95rem; padding: 4px 0; cursor: pointer; }
+.dl-radio input, .dl-check input { accent-color: var(--mint-dark); margin-right: 6px; }
+.dl-check { display: block; font-size: 0.9rem; line-height: 1.7; margin: 12px 0 4px; cursor: pointer; }
+.dl-error { color: var(--salmon-dark); font-size: 0.88rem; font-weight: 700; min-height: 1.2em; margin: 8px 0 0; }
+button.btn { border: none; cursor: pointer; font-family: inherit; }
+.dl-done { border-top: 1px solid var(--line); padding-top: 20px; }
+
 /* book */
 .book-title { font-family: 'Noto Serif JP', serif; font-weight: 900; font-size: 1.35rem; line-height: 1.5; margin-bottom: 4px; }
 .book-sub { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 1rem; color: var(--g600); line-height: 1.7; margin-bottom: 6px; }
@@ -173,8 +188,28 @@ h2 { font-family: 'Noto Serif JP', serif; font-weight: 900; font-size: clamp(1.2
       <li>38.1%が、会社を離れても続く関係は「0人」</li>
       <li>不安を感じながら、現在何も取り組んでいない人は34.3%</li>
     </ul>
-    <div class="btn-wrap">
-      <a class="btn" href="/meishi-teinen/scia-meishi-teinen-report-2026.pdf" target="_blank" rel="noopener noreferrer">調査レポートをダウンロード<small>PDF・14ページ</small></a>
+    <form id="dl-form" class="dl-form" novalidate>
+      <p class="dl-lead">メールアドレスとご所属を入力すると、すぐにダウンロードできます。</p>
+      <label class="dl-label" for="dl-email">メールアドレス<span class="req">必須</span></label>
+      <input class="dl-input" id="dl-email" name="email" type="email" autocomplete="email" required>
+      <fieldset class="dl-field">
+        <legend class="dl-label">ご所属<span class="req">必須</span></legend>
+        <label class="dl-radio"><input type="radio" name="role" value="個人" required> 個人</label>
+        <label class="dl-radio"><input type="radio" name="role" value="人事・研修担当"> 人事・研修担当</label>
+        <label class="dl-radio"><input type="radio" name="role" value="報道関係"> 報道関係</label>
+      </fieldset>
+      <label class="dl-check"><input type="checkbox" name="optin" value="yes"> SCIAからのメール案内（調査の続報・イベント情報）を受け取る</label>
+      <p class="dl-error" id="dl-error" role="alert"></p>
+      <div class="btn-wrap">
+        <button class="btn" type="submit">登録してダウンロードへ<small>PDF・14ページ</small></button>
+      </div>
+      <p class="note">ご入力いただいた情報は、<a href="https://scia.jp/zero/privacy.html">プライバシーポリシー</a>に沿って取り扱います。</p>
+    </form>
+    <div id="dl-done" class="dl-done" hidden>
+      <p>ご登録ありがとうございます。下のボタンからダウンロードしてください。</p>
+      <div class="btn-wrap">
+        <a class="btn" id="dl-link" href="/meishi-teinen/scia-meishi-teinen-report-2026.pdf" target="_blank" rel="noopener noreferrer">調査レポートをダウンロード<small>PDF・14ページ</small></a>
+      </div>
     </div>
     <p class="note">セカンドキャリア・インキュベーション協会（SCIA）調べ（調査実施機関：株式会社ネオマーケティング）。調査期間：2026年9月29日〜30日、有効回答数300人。</p>
   </div>
@@ -231,6 +266,49 @@ h2 { font-family: 'Noto Serif JP', serif; font-weight: 900; font-size: clamp(1.2
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+/* 調査レポートのダウンロード登録 → GAS（スプレッドシートに記録） */
+(function () {
+  var REPORT_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwGyO7ibJvmgPxtGSCdUuNvO720tZUcvd8VqLIg8GPqwKL5cMh6HqLxiTRtgEt-mxZd9g/exec";
+  var form = document.getElementById('dl-form');
+  var done = document.getElementById('dl-done');
+  var err = document.getElementById('dl-error');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = form.email.value.trim();
+    var roleEl = form.querySelector('input[name="role"]:checked');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'メールアドレスを正しく入力してください。'; return; }
+    if (!roleEl) { err.textContent = 'ご所属を選んでください。'; return; }
+    err.textContent = '';
+    var payload = {
+      email: email,
+      role: roleEl.value,
+      optin: form.optin.checked ? 'yes' : 'no',
+      source: 'meishi-teinen-report',
+      page: location.href,
+      referrer: document.referrer || '',
+      at: new Date().toISOString()
+    };
+    if (REPORT_WEBHOOK_URL) {
+      try {
+        fetch(REPORT_WEBHOOK_URL, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload), keepalive: true
+        }).catch(function () {});
+      } catch (x) {}
+    }
+    if (typeof gtag === 'function') { gtag('event', 'report_signup', { role: payload.role, optin: payload.optin }); }
+    form.hidden = true;
+    done.hidden = false;
+    done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  document.getElementById('dl-link').addEventListener('click', function () {
+    if (typeof gtag === 'function') { gtag('event', 'report_download'); }
+  });
+})();
 </script>
 </body>
 </html>
