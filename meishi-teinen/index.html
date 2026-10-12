@@ -119,7 +119,7 @@ h2 { font-family: 'Noto Serif JP', serif; font-weight: 900; font-size: clamp(1.2
 .note { font-size: 0.85rem; color: var(--g600); line-height: 1.8; }
 
 /* download form */
-.dl-form { border-top: 1px solid var(--line); padding-top: 20px; margin-top: 4px; }
+.dl-form { margin: 0; }
 .dl-lead { font-size: 0.95rem; color: var(--g600); }
 .dl-label { display: block; font-weight: 700; font-size: 0.92rem; margin: 14px 0 6px; padding: 0; }
 .req { display: inline-block; background: var(--salmon-light); color: var(--salmon-dark); font-size: 0.7rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; margin-left: 8px; vertical-align: 2px; }
@@ -131,7 +131,7 @@ h2 { font-family: 'Noto Serif JP', serif; font-weight: 900; font-size: clamp(1.2
 .dl-check { display: block; font-size: 0.9rem; line-height: 1.7; margin: 12px 0 4px; cursor: pointer; }
 .dl-error { color: var(--salmon-dark); font-size: 0.88rem; font-weight: 700; min-height: 1.2em; margin: 8px 0 0; }
 button.btn { border: none; cursor: pointer; font-family: inherit; }
-.dl-done { border-top: 1px solid var(--line); padding-top: 20px; }
+.dl-done { margin: 0; }
 
 /* book */
 .book-title { font-family: 'Noto Serif JP', serif; font-weight: 900; font-size: 1.35rem; line-height: 1.5; margin-bottom: 4px; }
@@ -182,12 +182,6 @@ button.btn { border: none; cursor: pointer; font-family: inherit; }
 <section id="report">
   <h2>調査レポート「名刺定年」実態調査</h2>
   <div class="card">
-    <p>45〜59歳の管理職300人に、会社を離れた後の人間関係を聞きました。</p>
-    <ul class="stats">
-      <li>仕事の相手は中央値20人。会社を離れても連絡を取り合うと思う人は中央値2人</li>
-      <li>38.1%が、会社を離れても続く関係は「0人」</li>
-      <li>不安を感じながら、現在何も取り組んでいない人は34.3%</li>
-    </ul>
     <form id="dl-form" class="dl-form" novalidate>
       <p class="dl-lead">メールアドレスとご所属を入力すると、すぐにダウンロードできます。</p>
       <label class="dl-label" for="dl-email">メールアドレス<span class="req">必須</span></label>
