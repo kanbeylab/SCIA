@@ -98,6 +98,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://scia.jp/news/meishi-teinen-media/</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
   <!-- 法的ページ -->
   <url>
     <loc>https://scia.jp/zero/contact.html</loc>
