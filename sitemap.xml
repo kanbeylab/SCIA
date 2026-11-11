@@ -3,9 +3,16 @@
   <!-- トップ -->
   <url>
     <loc>https://scia.jp/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <!-- 第1期生 募集ページ -->
+  <url>
+    <loc>https://scia.jp/first/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <!-- 診断（主要CV） -->
   <url>
